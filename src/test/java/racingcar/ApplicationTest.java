@@ -31,6 +31,62 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    void 예외_1_1() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("abcdef, g", "1"))
+                        .isInstanceOf(IllegalArgumentException.class));
+    }
+
+    @Test
+    void 예외_2_2() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("a, ,c", "1"))
+                        .isInstanceOf(IllegalArgumentException.class));
+    }
+
+    @Test
+    void 예외_2_3() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("\n", "1"))
+                        .isInstanceOf(IllegalArgumentException.class));
+    }
+
+    @Test
+    void 예외_2_4_1() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("a,b,c", "-1"))
+                        .isInstanceOf(IllegalArgumentException.class));
+    }
+
+    @Test
+    void 예외_2_4_2() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("a,b,c", "0"))
+                        .isInstanceOf(IllegalArgumentException.class));
+    }
+
+    @Test
+    void 예외_2_4_3() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("a,b,c", "2.5"))
+                        .isInstanceOf(IllegalArgumentException.class));
+    }
+
+    @Test
+    void 예외_2_4_4() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("a,b,c", "five"))
+                        .isInstanceOf(IllegalArgumentException.class));
+    }
+
+    @Test
+    void 예외_2_4_5() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("a,b,c", "\n"))
+                        .isInstanceOf(IllegalArgumentException.class));
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
