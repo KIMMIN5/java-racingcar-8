@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 import racingcar.domain.Car;
 
 public class Converter {
